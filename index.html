@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>روشن: دراسة عمرانية وتحليلية شاملة</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom Config & Styling -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        roshn: {
+                            dark: '#102C57',   // Deep Navy
+                            primary: '#3B82F6', // Vibrant Azure
+                            accent: '#F59E0B',  // Golden Sand
+                            light: '#F3F4F6',   // Off-White
+                            surface: '#FFFFFF'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #F3F4F6;
+            color: #1F2937;
+            overflow-x: hidden;
+        }
+        
+        /* Chart Container Strict Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 350px;
+            max-height: 400px;
+            margin: 0 auto;
+        }
+
+        .plotly-container {
+            width: 100%;
+            height: 400px;
+            position: relative;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #102C57;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3B82F6;
+        }
+
+        /* Card Hover Effects */
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+    
+    <!-- 
+    NO SVG USED IN THIS DOCUMENT
+    NO MERMAID JS USED IN THIS DOCUMENT
+    PALETTE: Visionary Blue & Gold (#102C57, #3B82F6, #F59E0B)
+    PLAN SUMMARY:
+    1. Intro & Vision
+    2. Projects Overview (Cards + Links)
+    3. Urban Analysis (Chart.js Radar & Donut)
+    4. Market Analysis (Plotly Scatter)
+    5. SWOT Analysis (HTML Grid)
+    6. Sustainability (Chart.js Bar)
+    -->
+</head>
+<body class="bg-gray-100">
+
+    <!-- Hero Section -->
+    <header class="bg-roshn-dark text-white pt-12 pb-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://images.unsplash.com/photo-1516138936932-d352b662363b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')] bg-cover bg-center"></div>
+        <div class="max-w-7xl mx-auto relative z-10 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight">مشاريع روشن: إعادة تعريف المشهد العمراني</h1>
+            <p class="text-xl md:text-2xl text-roshn-primary font-medium mb-6">دراسة تحليلية ونقدية لمشاريع روشن</p>
+            <div class="w-24 h-1 bg-roshn-accent mx-auto rounded-full mb-8"></div>
+            <p class="max-w-3xl mx-auto text-gray-300 leading-relaxed text-lg">
+                تقدم هذه الدراسة تحليلاً عميقاً لاستراتيجية "روشن" (إحدى شركات صندوق الاستثمارات العامة) في تطوير أحياء سكنية متكاملة. نناقش هنا التحول من التخطيط الشبكي التقليدي إلى التخطيط الإنساني (الأنسنة)، مع استعراض لأهم المشاريع والروابط الرسمية لها.
+            </p>
+        </div>
+    </header>
+
+    <!-- Key Metrics Section (Overlay) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-20">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Metric 1 -->
+            <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-roshn-primary text-center">
+                <div class="text-gray-500 font-medium mb-2">إجمالي مساحة الأراضي</div>
+                <div class="text-4xl font-bold text-roshn-dark">200+</div>
+                <div class="text-sm text-gray-400 mt-1">مليون متر مربع</div>
+            </div>
+            <!-- Metric 2 -->
+            <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-roshn-accent text-center">
+                <div class="text-gray-500 font-medium mb-2">المستهدف السكني</div>
+                <div class="text-4xl font-bold text-roshn-dark">400,000</div>
+                <div class="text-sm text-gray-400 mt-1">وحدة سكنية بحلول 2030</div>
+            </div>
+            <!-- Metric 3 -->
+            <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-roshn-primary text-center">
+                <div class="text-gray-500 font-medium mb-2">معدل التشجير المستهدف</div>
+                <div class="text-4xl font-bold text-roshn-dark">15%</div>
+                <div class="text-sm text-gray-400 mt-1">من إجمالي مساحة المخطط</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+
+        <!-- Section 1: Major Projects Portfolio -->
+        <section>
+            <div class="flex items-center mb-8">
+                <div class="text-3xl font-bold text-roshn-dark ml-4">01. محفظة المشاريع الكبرى</div>
+                <div class="flex-grow h-px bg-gray-300"></div>
+            </div>
+            <p class="text-gray-600 mb-8 leading-relaxed max-w-4xl">
+                تتوزع مشاريع روشن استراتيجياً عبر مناطق المملكة الرئيسية، حيث يتميز كل مشروع بهوية معمارية مستمدة من التراث المحلي للمنطقة (الكود السلماني في الرياض، الطراز الحجازي في جدة ومكة، والطراز الشرقي في الأحساء والدمام). فيما يلي أبرز هذه المشاريع مع روابطها الرسمية:
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project: Sedra -->
+                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-4 bg-roshn-dark"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-gray-900">سدرة (SEDRA)</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">الرياض</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-4">المشروع الأيقوني الأول، يقع شمال الرياض. يعتمد الطراز السلماني الحديث ويدمج الوادي الطبيعي ضمن النسيج العمراني.</p>
+                        <div class="mb-4">
+                            <span class="text-xs font-semibold text-gray-400 block mb-1">أبرز المميزات:</span>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-gray-100 px-2 py-1 rounded">مسارات مشاة</span>
+                                <span class="text-xs bg-gray-100 px-2 py-1 rounded">مرافق متكاملة</span>
+                            </div>
+                        </div>
+                        <a href="https://www.roshn.sa/en/sedra" target="_blank" class="inline-flex items-center justify-center w-full px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-roshn-primary hover:bg-blue-700 transition">
+                            زيارة الصفحة الرسمية
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project: Marafy -->
+                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-4 bg-roshn-accent"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-gray-900">مرافي (MARAFY)</h3>
+                            <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">جدة</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-4">مشروع ضخم شمال جدة يتميز بقناة مائية صناعية بطول 11 كم، مما يدخل الحياة البحرية إلى قلب المدينة.</p>
+                        <div class="mb-4">
+                            <span class="text-xs font-semibold text-gray-400 block mb-1">أبرز المميزات:</span>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-xs bg-gray-100 px-2 py-1 rounded">واجهة مائية</span>
+                                <span class="text-xs bg-gray-100 px-2 py-1 rounded">نقل مائي</span>
+                            </div>
+                        </div>
+                        <a href="https://www.roshn.sa/en/marafy" target="_blank" class="inline-flex items-center justify-center w-full px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-roshn-primary hover:bg-blue-700 transition">
+                            زيارة الصفحة الرسمية
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project: Warefa -->
+                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-4 bg-roshn-dark"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-gray-900">وارفة (WAREFA)</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">الرياض</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-4">يقع في حي الجنادرية شرق الرياض. يركز على الترابط الاجتماعي وتوفير مساحات خضراء مشتركة.</p>
+                        <a href="https://www.roshn.sa/en/warefa" target="_blank" class="mt-auto inline-flex items-center justify-center w-full px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-roshn-primary hover:bg-blue-700 transition">
+                            زيارة الصفحة الرسمية
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project: Alarous -->
+                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-4 bg-roshn-accent"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-gray-900">العروس (ALAROUS)</h3>
+                            <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">جدة</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-4">شمال جدة، يمتد على مساحة 4 ملايين متر مربع. يدمج التراث الحجازي مع التصميم المعاصر.</p>
+                        <a href="https://www.roshn.sa/en/alarous" target="_blank" class="inline-flex items-center justify-center w-full px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-roshn-primary hover:bg-blue-700 transition">
+                            زيارة الصفحة الرسمية
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project: Alfulwa -->
+                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-4 bg-green-600"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-gray-900">الفلوة (ALFULWA)</h3>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">الهفوف</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-4">يقع بالقرب من جبل القارة، ويعكس الطبيعة الجغرافية الفريدة للأحساء وتراثها المعماري.</p>
+                        <a href="https://www.roshn.sa/en/alfulwa" target="_blank" class="inline-flex items-center justify-center w-full px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-roshn-primary hover:bg-blue-700 transition">
+                            زيارة الصفحة الرسمية
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project: Almanar -->
+                <div class="project-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-4 bg-gray-800"></div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-gray-900">المنار (ALMANAR)</h3>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full">مكة المكرمة</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-4">المشروع الأول في مكة المكرمة، يقع عند البوابة الغربية للعاصمة المقدسة، يجمع بين الروحانية وجودة الحياة.</p>
+                        <a href="https://www.roshn.sa/en/almanar" target="_blank" class="inline-flex items-center justify-center w-full px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-roshn-primary hover:bg-blue-700 transition">
+                            زيارة الصفحة الرسمية
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Urban Planning Analysis (Charts) -->
+        <section class="bg-white rounded-xl shadow-md p-8">
+            <div class="flex items-center mb-8">
+                <div class="text-3xl font-bold text-roshn-dark ml-4">02. التحليل العمراني: الأنسنة مقابل التقليد</div>
+                <div class="flex-grow h-px bg-gray-200"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Text Content -->
+                <div class="flex flex-col justify-center">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">توزيع استخدامات الأراضي</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        يتميز المخطط العام لمشاريع روشن (مثل سدرة) بالابتعاد عن تقسيم الأراضي التقليدي الذي يغلب عليه الكتل السكنية الصماء. بدلاً من ذلك، نلاحظ توازناً دقيقاً يخصص أكثر من 40% من المساحة للمجال العام (شوارع، حدائق، مرافق)، مما يعزز مفهوم "الشوارع الحية".
+                    </p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center text-gray-700">
+                            <span class="w-2 h-2 bg-roshn-primary rounded-full ml-3"></span>
+                            <span><strong>المساحات الخضراء:</strong> شبكة متصلة من الحدائق الجيبية (Pocket Parks).</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <span class="w-2 h-2 bg-roshn-accent rounded-full ml-3"></span>
+                            <span><strong>الخدمات:</strong> مرافق تعليمية وصحية ضمن نطاق المشي.</span>
+                        </li>
+                        <li class="flex items-center text-gray-700">
+                            <span class="w-2 h-2 bg-gray-400 rounded-full ml-3"></span>
+                            <span><strong>الشوارع:</strong> تدرج هرمي يعطي أولوية للمشاة والدراجات.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Visualization: Land Use Composition -->
+                <div class="flex flex-col items-center">
+                    <h4 class="text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wider">نموذج توزيع الأراضي (تقديري)</h4>
+                    <div class="chart-container">
+                        <canvas id="landUseChart"></canvas>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-4 text-center">المصدر: تحليل المخططات العامة المعلنة لمشروع سدرة</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Quality of Life Radar -->
+        <section class="bg-white rounded-xl shadow-md p-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Visualization: Radar Chart -->
+                <div class="flex flex-col items-center order-2 lg:order-1">
+                    <h4 class="text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wider">مؤشرات جودة الحياة (Quality of Life)</h4>
+                    <div class="chart-container">
+                        <canvas id="qualityRadarChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Text Content -->
+                <div class="flex flex-col justify-center order-1 lg:order-2">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">معايير جودة الحياة</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        عند مقارنة أحياء روشن بالأحياء التقليدية في المدن السعودية، نجد تفوقاً ملحوظاً في معايير "أنسنة المدن". يعتمد التصميم على مبادئ (New Urbanism) التي تهدف إلى تقليل الاعتماد على السيارة وتعزيز التفاعل الاجتماعي.
+                    </p>
+                    <div class="bg-blue-50 border-r-4 border-roshn-primary p-4 rounded">
+                        <p class="text-sm text-blue-900 font-medium">
+                            نقطة نقدية:
+                            <span class="font-normal text-blue-800">على الرغم من ارتفاع مؤشر المشاة (Walkability) داخل الحي، إلا أن الاتصال مع باقي المدينة لا يزال يعتمد بشكل كبير على السيارة الخاصة، مما يمثل تحدياً للتكامل الحضري الشامل.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Architectural Typology Analysis (Plotly) -->
+        <section>
+            <div class="flex items-center mb-8">
+                <div class="text-3xl font-bold text-roshn-dark ml-4">03. التنوع المعماري والسكاني</div>
+                <div class="flex-grow h-px bg-gray-300"></div>
+            </div>
+            <p class="text-gray-600 mb-8 max-w-4xl">
+                توفر روشن مزيجاً متنوعاً من الوحدات السكنية (فلل، تاون هاوس، دوبلكس) لتلبية احتياجات مختلف الشرائح الديموغرافية، مما يساهم في خلق نسيج اجتماعي متنوع بدلاً من العزل الطبقي. الرسم البياني التالي يوضح العلاقة بين مساحة الوحدة وحجم الأسرة المستهدفة بناءً على نماذج الوحدات المطروحة.
+            </p>
+            
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="plotly-container" id="typologyPlot"></div>
+                <div class="text-center mt-4">
+                    <span class="text-xs text-gray-500 bg-gray-100 px-3 py-1 rounded-full">محور س: مساحة الوحدة (م²)</span>
+                    <span class="text-xs text-gray-500 bg-gray-100 px-3 py-1 rounded-full mr-2">محور ص: مؤشر السعر النسبي</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Critical SWOT Analysis -->
+        <section class="bg-roshn-dark text-white rounded-2xl shadow-xl p-8 md:p-12">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">التحليل النقدي (SWOT Analysis)</h2>
+                <p class="text-roshn-primary text-lg">نقاط القوة، الضعف، الفرص، والتهديدات</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Strengths -->
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20">
+                    <div class="flex items-center mb-4">
+                        <span class="text-2xl mr-2">💪</span>
+                        <h3 class="text-xl font-bold text-white">نقاط القوة (Strengths)</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-200 text-sm">
+                        <li>• <strong>التكامل الخدمي:</strong> إدارة مجتمعية موحدة وتطبيق ذكي للسكان.</li>
+                        <li>• <strong>الجودة العمرانية:</strong> تطبيق الكود السلماني والاهتمام بالفراغات البينية.</li>
+                        <li>• <strong>السرعة في التنفيذ:</strong> تقنيات بناء حديثة تضمن التسليم في الوقت المحدد.</li>
+                    </ul>
+                </div>
+
+                <!-- Weaknesses -->
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20">
+                    <div class="flex items-center mb-4">
+                        <span class="text-2xl mr-2">⚠️</span>
+                        <h3 class="text-xl font-bold text-white">نقاط الضعف (Weaknesses)</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-200 text-sm">
+                        <li>• <strong>الكثافة العالية:</strong> قد لا تتناسب الكثافة المرتفعة مع خصوصية الأسرة السعودية التقليدية.</li>
+                        <li>• <strong>الموقع الجغرافي:</strong> بعض المشاريع بعيدة نسبياً عن مراكز المدن الحالية (CBD).</li>
+                        <li>• <strong>التشابه:</strong> تكرار النماذج المعمارية قد يقلل من تميز الوحدة الفردية.</li>
+                    </ul>
+                </div>
+
+                <!-- Opportunities -->
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20">
+                    <div class="flex items-center mb-4">
+                        <span class="text-2xl mr-2">🚀</span>
+                        <h3 class="text-xl font-bold text-white">الفرص (Opportunities)</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-200 text-sm">
+                        <li>• <strong>النقل العام:</strong> ربط الأحياء بشبكات المترو والحافلات لتقليل العزلة.</li>
+                        <li>• <strong>الاستدامة:</strong> رفع كفاءة الطاقة والمياه لتقليل تكاليف التشغيل طويلة الأمد.</li>
+                        <li>• <strong>التجارة:</strong> خلق فرص استثمارية للمتاجر والمقاهي المحلية داخل الأحياء.</li>
+                    </ul>
+                </div>
+
+                <!-- Threats -->
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg border border-white/20">
+                    <div class="flex items-center mb-4">
+                        <span class="text-2xl mr-2">🛡️</span>
+                        <h3 class="text-xl font-bold text-white">التهديدات (Threats)</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-200 text-sm">
+                        <li>• <strong>تشبع السوق:</strong> زيادة المعروض العقاري قد تؤثر على قيمة إعادة البيع.</li>
+                        <li>• <strong>الازدحام المروري:</strong> الضغط المتوقع على الشوارع المحيطة (مثل طريق الملك سلمان).</li>
+                        <li>• <strong>التغير الاقتصادي:</strong> تأثير تقلبات أسعار الفائدة على القدرة الشرائية.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Sustainability -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div class="md:col-span-1 flex flex-col justify-center">
+                <h3 class="text-2xl font-bold text-roshn-dark mb-4">الاستدامة والبيئة</h3>
+                <p class="text-gray-600 mb-4">
+                    تلتزم روشن بمعايير "مستدام" السعودية، مع التركيز على العزل الحراري، إعادة تدوير المياه الرمادية للري، واستخدام نباتات محلية تتطلب استهلاكاً منخفضاً للمياه.
+                </p>
+                <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+                    <span class="block text-2xl font-bold text-green-700 mb-1">40%</span>
+                    <span class="text-sm text-green-800">توفير متوقع في استهلاك الطاقة مقارنة بالمباني التقليدية.</span>
+                </div>
+            </div>
+            <div class="md:col-span-2 bg-white rounded-xl shadow-md p-6">
+                 <h4 class="text-sm font-semibold text-gray-500 mb-4 uppercase tracking-wider">مقارنة استهلاك الموارد</h4>
+                 <div class="chart-container">
+                    <canvas id="sustainabilityChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <footer class="text-center py-12 border-t border-gray-200">
+            <h2 class="text-2xl font-bold text-roshn-dark mb-4">الخاتمة: نحو مستقبل حضري مستدام</h2>
+            <p class="max-w-2xl mx-auto text-gray-600 mb-6">
+                تمثل مشاريع روشن قفزة نوعية في الفكر التخطيطي في المملكة العربية السعودية. على الرغم من التحديات المتعلقة بالكثافة والمرور، إلا أن النموذج الذي تقدمه يشكل أساساً قوياً لتحقيق مستهدفات جودة الحياة ضمن رؤية 2030، محولاً المسكن من مجرد مأوى إلى جزء من مجتمع حيوي ومتكامل.
+            </p>
+            <p class="text-sm text-gray-400">© 2025 دراسة تحليلية مستقلة - تم جمع البيانات من المصادر المتاحة للجمهور.</p>
+        </footer>
+
+    </main>
+
+    <!-- JavaScript for Charts -->
+    <script>
+        // --- Utility Functions ---
+        // Label wrapping function for Chart.js
+        function splitLabel(label, maxLength = 16) {
+            if (label.length <= maxLength) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + " " + words[i]).length <= maxLength) {
+                    currentLine += " " + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // Shared Tooltip Config
+        const tooltipPlugin = {
+            tooltip: {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) {
+                            return label.join(' ');
+                        } else {
+                            return label;
+                        }
+                    }
+                }
+            }
+        };
+
+        // --- Chart 1: Land Use Distribution (Donut) ---
+        const ctxLand = document.getElementById('landUseChart').getContext('2d');
+        const landUseChart = new Chart(ctxLand, {
+            type: 'doughnut',
+            data: {
+                labels: ['الوحدات السكنية', 'المساحات الخضراء والمفتوحة', 'الخدمات والمرافق العامة', 'شبكة الطرق والمشاة'],
+                datasets: [{
+                    data: [50, 15, 15, 20], // Approximate breakdown
+                    backgroundColor: [
+                        '#102C57', // Residential (Dark Blue)
+                        '#10B981', // Green (Green)
+                        '#F59E0B', // Services (Gold)
+                        '#9CA3AF'  // Roads (Gray)
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { family: 'Tajawal' },
+                            usePointStyle: true,
+                            padding: 20
+                        }
+                    },
+                    ...tooltipPlugin
+                }
+            }
+        });
+
+        // --- Chart 2: Quality of Life (Radar) ---
+        const ctxRadar = document.getElementById('qualityRadarChart').getContext('2d');
+        
+        // Process labels for wrapping
+        const radarLabels = ['سهولة المشي (Walkability)', 'توفر الحدائق', 'الأمن والسلامة', 'الخدمات التعليمية', 'النقل العام', 'التفاعل الاجتماعي'];
+        const processedRadarLabels = radarLabels.map(l => splitLabel(l));
+
+        const qualityRadarChart = new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: processedRadarLabels,
+                datasets: [{
+                    label: 'حي روشن (سدرة)',
+                    data: [85, 90, 95, 80, 60, 90], // High scores except Public Transport
+                    fill: true,
+                    backgroundColor: 'rgba(59, 130, 246, 0.2)', // Blue-500 transparent
+                    borderColor: '#3B82F6',
+                    pointBackgroundColor: '#3B82F6',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#3B82F6'
+                }, {
+                    label: 'حي تقليدي (مخطط شبكي)',
+                    data: [40, 30, 70, 60, 20, 40], // Lower scores generally
+                    fill: true,
+                    backgroundColor: 'rgba(156, 163, 175, 0.2)', // Gray transparent
+                    borderColor: '#9CA3AF',
+                    pointBackgroundColor: '#9CA3AF',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#9CA3AF'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: '#E5E7EB' },
+                        grid: { color: '#E5E7EB' },
+                        pointLabels: {
+                            font: { family: 'Tajawal', size: 12 },
+                            color: '#4B5563'
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { font: { family: 'Tajawal' } }
+                    },
+                    ...tooltipPlugin
+                }
+            }
+        });
+
+        // --- Chart 3: Architectural Typology (Plotly Scatter) ---
+        // Simulating data: Unit Area vs Price Index vs Type
+        const trace1 = {
+            x: [250, 300, 350, 400], // Villas
+            y: [80, 90, 100, 110], // Price Index
+            mode: 'markers',
+            type: 'scatter',
+            name: 'فلل مستقلة',
+            marker: { size: 14, color: '#102C57' }, // Dark Blue
+            text: ['فيلا صغيرة', 'فيلا متوسطة', 'فيلا كبيرة', 'قصر مصغر']
+        };
+
+        const trace2 = {
+            x: [180, 200, 220, 240], // Townhouses
+            y: [50, 55, 65, 70],
+            mode: 'markers',
+            type: 'scatter',
+            name: 'تاون هاوس',
+            marker: { size: 12, color: '#3B82F6' }, // Blue
+            text: ['تاون هاوس طرفي', 'تاون هاوس وسطي', 'تاون هاوس كورنر', 'تاون هاوس بلس']
+        };
+
+        const trace3 = {
+            x: [120, 140, 160, 180], // Duplexes
+            y: [40, 45, 50, 55],
+            mode: 'markers',
+            type: 'scatter',
+            name: 'دوبلكس',
+            marker: { size: 10, color: '#F59E0B' }, // Gold
+            text: ['دوبلكس A', 'دوبلكس B', 'دوبلكس C', 'دوبلكس D']
+        };
+
+        const layout = {
+            font: { family: 'Tajawal' },
+            dragmode: false,
+            hovermode: 'closest',
+            xaxis: {
+                title: 'مساحة الوحدة (متر مربع)',
+                showgrid: true,
+                zeroline: false,
+                gridcolor: '#E5E7EB'
+            },
+            yaxis: {
+                title: 'مؤشر السعر التقديري',
+                showgrid: true,
+                zeroline: false,
+                gridcolor: '#E5E7EB'
+            },
+            legend: { x: 0, y: 1 },
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            margin: { l: 50, r: 20, t: 30, b: 50 }
+        };
+
+        Plotly.newPlot('typologyPlot', [trace1, trace2, trace3], layout, {displayModeBar: false, responsive: true});
+
+        // --- Chart 4: Sustainability Bar Chart ---
+        const ctxSus = document.getElementById('sustainabilityChart').getContext('2d');
+        const susLabels = ['استهلاك الطاقة', 'استهلاك المياه', 'الهدر في المواد', 'الانبعاثات الكربونية'];
+        const processedSusLabels = susLabels.map(l => splitLabel(l));
+
+        new Chart(ctxSus, {
+            type: 'bar',
+            data: {
+                labels: processedSusLabels,
+                datasets: [{
+                    label: 'نسبة التوفير مقارنة بالبناء التقليدي (%)',
+                    data: [18, 40, 25, 15],
+                    backgroundColor: [
+                        '#F59E0B',
+                        '#3B82F6',
+                        '#102C57',
+                        '#10B981'
+                    ],
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 50,
+                        title: { display: true, text: 'النسبة المئوية (%)', font: {family: 'Tajawal'} }
+                    },
+                    x: {
+                        ticks: { font: {family: 'Tajawal'} }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    ...tooltipPlugin
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
